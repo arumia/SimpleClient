@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="738.0" prefWidth="1199.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="hr.FXMLDocumentController" />
+
+<AnchorPane id="AnchorPane" prefHeight="738.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.FXMLDocumentController">
+   <children>
+      <Label layoutX="50.0" layoutY="43.0" text="Managed Animal List">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="133.0" layoutY="193.0" prefHeight="200.0" prefWidth="934.0">
+        <columns>
+          <TableColumn prefWidth="65.0" text="Animal_ID" />
+          <TableColumn prefWidth="78.0" text="Name" />
+            <TableColumn prefWidth="82.0" text="Address" />
+            <TableColumn prefWidth="57.0" text="Zoo_id" />
+            <TableColumn prefWidth="163.0" text="Food_type" />
+            <TableColumn prefWidth="77.0" text="Vaccination" />
+            <TableColumn prefWidth="115.0" text="Last_checkup_date" />
+            <TableColumn prefWidth="95.0" text="Characteristic" />
+            <TableColumn prefWidth="201.0" text="Description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
