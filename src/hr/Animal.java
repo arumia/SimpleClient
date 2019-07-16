@@ -117,8 +117,8 @@ public class Animal {
                 animal.address = rs.getString(3);
                 animal.zooId = rs.getInt(4);
                 animal.foodType = rs.getString(5);
-                animal.vaccination = rs.getString(7);
-		animal.lastcheckdate = rs.getTimestamp(6);
+                animal.vaccination = rs.getString(6);
+		animal.lastcheckdate = rs.getTimestamp(7);
                 animal.character = rs.getString(8);
                 animal.description = rs.getString(9);
                 

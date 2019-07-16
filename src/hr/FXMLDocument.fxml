@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="738.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.FXMLDocumentController">
    <children>
       <Label layoutX="50.0" layoutY="43.0" text="Managed Animal List">
@@ -14,17 +13,17 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="133.0" layoutY="193.0" prefHeight="200.0" prefWidth="934.0">
+      <TableView fx:id="animalTable" layoutX="50.0" layoutY="260.0" prefHeight="350.0" prefWidth="1110.0">
         <columns>
-          <TableColumn prefWidth="65.0" text="Animal_ID" />
-          <TableColumn prefWidth="78.0" text="Name" />
-            <TableColumn prefWidth="82.0" text="Address" />
-            <TableColumn prefWidth="57.0" text="Zoo_id" />
-            <TableColumn prefWidth="163.0" text="Food_type" />
-            <TableColumn prefWidth="77.0" text="Vaccination" />
-            <TableColumn prefWidth="115.0" text="Last_checkup_date" />
-            <TableColumn prefWidth="95.0" text="Characteristic" />
-            <TableColumn prefWidth="201.0" text="Description" />
+          <TableColumn fx:id="animalIDColumn" prefWidth="67.0" text="Animal_ID" />
+          <TableColumn fx:id="animalNameColumn" prefWidth="108.0" text="Name" />
+            <TableColumn fx:id="animalAdressColumn" minWidth="0.0" prefWidth="107.0" text="Address" />
+            <TableColumn fx:id="animalZooColumn" minWidth="0.0" prefWidth="53.0" text="Zoo_id" />
+            <TableColumn fx:id="animalFoodColumn" prefWidth="156.0" text="Food_type" />
+            <TableColumn fx:id="animalVaccineColumn" prefWidth="72.0" text="Vaccination" />
+            <TableColumn fx:id="animalcheckColumn" prefWidth="184.0" text="Last_checkup_date" />
+            <TableColumn fx:id="animalCharacterColumn" prefWidth="89.0" text="Characteristic" />
+            <TableColumn fx:id="animalDesColumn" prefWidth="273.0" text="Description" />
         </columns>
       </TableView>
    </children>
