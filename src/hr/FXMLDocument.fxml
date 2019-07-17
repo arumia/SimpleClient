@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -10,10 +12,10 @@
    <children>
       <Label layoutX="50.0" layoutY="43.0" text="Managed Animal List">
          <font>
-            <Font size="24.0" />
+            <Font size="32.0" />
          </font>
       </Label>
-      <TableView fx:id="animalTable" layoutX="50.0" layoutY="260.0" prefHeight="350.0" prefWidth="1110.0">
+      <TableView fx:id="animalTable" layoutX="50.0" layoutY="188.0" prefHeight="422.0" prefWidth="1110.0">
         <columns>
           <TableColumn fx:id="animalIDColumn" prefWidth="67.0" text="Animal_ID" />
           <TableColumn fx:id="animalNameColumn" prefWidth="108.0" text="Name" />
@@ -26,5 +28,8 @@
             <TableColumn fx:id="animalDesColumn" prefWidth="273.0" text="Description" />
         </columns>
       </TableView>
+      <Label layoutX="50.0" layoutY="121.0" text="Search Animal:" />
+      <TextField layoutX="145.0" layoutY="118.0" prefHeight="21.0" prefWidth="181.0" />
+      <Button layoutX="346.0" layoutY="119.0" mnemonicParsing="false" text="Search" />
    </children>
 </AnchorPane>

@@ -101,7 +101,7 @@ public class Animal {
         ObservableList<Animal> listAnimal = FXCollections.observableArrayList();
         
         String sql = "SELECT ANIMAL_ID,NAME,ADDRESS,ZOO_ID,FOOD_TYPE,VACCINATION,LAST_CHECKU_DATE,"
-                + "CHARACTERISTIC,DESCRIPTION FROM ANIMAL";
+                + "CHARACTERISTIC,DESCRIPTION FROM ANIMAL order by animal_id";
         
         Statement stmt;
         ResultSet rs;
@@ -136,6 +136,33 @@ public class Animal {
         return listAnimal;
         
     }
+   /* public ObservableList<Animal>getRestrictedList(Connection conn, String pinLastName){
+           ObservableList<Animal> listAnimal = FXCollections.observableArrayList();
+        
+        String sql = "SELECT ANIMAL_ID,NAME,ADDRESS,ZOO_ID,FOOD_TYPE,VACCINATION,LAST_CHECKU_DATE,"
+                + "CHARACTERISTIC,DESCRIPTION FROM ANIMAL"
+                + "  WHERE UPPER(NAME) like ? ORDER BY EMPLOYEE_ID";
+        
+        PreparedStatement stmt;
+        ResultSet rs;
 
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%"+pinLastName.toUpperCase()+"%");
+            
+            rs = stmt.executeQuery();
+            
+            listAnimal=getAnimalList(rs);
+            }
+         catch (SQLException exc) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errots with data access");
+            alert.setContentText("Details: " + exc.getMessage());
+            alert.showAndWait();
+        }
+        
+        return listAnimal;
+        
+    }*/
 }
 
