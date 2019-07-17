@@ -136,19 +136,19 @@ public class Animal {
         return listAnimal;
         
     }
-   /* public ObservableList<Animal>getRestrictedList(Connection conn, String pinLastName){
+    public ObservableList<Animal> getRestrictedList(Connection conn, String pinName){
            ObservableList<Animal> listAnimal = FXCollections.observableArrayList();
         
         String sql = "SELECT ANIMAL_ID,NAME,ADDRESS,ZOO_ID,FOOD_TYPE,VACCINATION,LAST_CHECKU_DATE,"
                 + "CHARACTERISTIC,DESCRIPTION FROM ANIMAL"
-                + "  WHERE UPPER(NAME) like ? ORDER BY EMPLOYEE_ID";
+                + " WHERE UPPER(NAME) like ? ORDER BY ANIMAL_ID";
         
         PreparedStatement stmt;
         ResultSet rs;
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "%"+pinLastName.toUpperCase()+"%");
+            stmt.setString(1, "%"+pinName.toUpperCase()+"%");
             
             rs = stmt.executeQuery();
             
@@ -163,6 +163,28 @@ public class Animal {
         
         return listAnimal;
         
-    }*/
+    }
+     private ObservableList<Animal> getAnimalList(ResultSet rs) throws SQLException{
+        ObservableList<Animal> listAnimal = FXCollections.observableArrayList();
+        
+        while (rs.next()) {
+                Animal animal = new Animal();
+                animal.animalId = rs.getInt(1);
+                animal.name = rs.getString(2);
+                animal.address = rs.getString(3);
+                animal.zooId = rs.getInt(4);
+                animal.foodType = rs.getString(5);
+                animal.vaccination = rs.getString(6);
+		animal.lastcheckdate = rs.getTimestamp(7);
+                animal.character = rs.getString(8);
+                animal.description = rs.getString(9);
+                
+                System.out.println("animalId: " + animal.getAnimalId().toString() + " animal Name: " 
+                        + animal.getName());
+                listAnimal.add(animal);
+            }
+        return listAnimal;
+    }
+
 }
 

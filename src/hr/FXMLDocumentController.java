@@ -11,10 +11,13 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -24,13 +27,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLDocumentController implements Initializable {
     
     private Connection conn;
-    private ObservableList AnimalList = FXCollections.observableArrayList();
+    private ObservableList animalList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         conn = DBConnection.getConnection();
-        AnimalList = new Animal().getAll(conn);
+        animalList = new Animal().getAll(conn);
                 //set up of columns
+        setAniTable(animalList);
+    }    
+    private void setAniTable(ObservableList<Animal> animalList){
         animalIDColumn.setCellValueFactory(new PropertyValueFactory<>("animalId"));
         animalNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         animalAdressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -41,8 +47,8 @@ public class FXMLDocumentController implements Initializable {
         animalCharacterColumn.setCellValueFactory(new PropertyValueFactory<>("character"));
         animalDesColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         
-        animalTable.setItems(AnimalList);
-    }    
+        animalTable.setItems(animalList);
+    }
        @FXML
     private TableView<Animal> animalTable;
 
@@ -73,4 +79,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Animal, String> animalDesColumn;
     
+    @FXML
+    private TextField serchNameTextField;
+        
+    @FXML
+    private Button serchButton;
+    
+    @FXML
+    public void searchNameButtonOnAction(ActionEvent action){
+        conn = DBConnection.getConnection();
+        String name = serchNameTextField.getText().trim();
+        animalList = new Animal().getRestrictedList(conn, name);
+        
+        setAniTable(animalList);
+    };
 }
