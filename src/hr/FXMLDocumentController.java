@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  *
@@ -86,11 +87,20 @@ public class FXMLDocumentController implements Initializable {
     private Button serchButton;
     
     @FXML
+    private Button addButton;
+    
+    @FXML
     public void searchNameButtonOnAction(ActionEvent action){
         conn = DBConnection.getConnection();
         String name = serchNameTextField.getText().trim();
         animalList = new Animal().getRestrictedList(conn, name);
         
         setAniTable(animalList);
-    };
+    }
+    
+    public void addAnimalButtonOnAction(ActionEvent action) throws Exception{
+        AddAnimal addAnimal = new AddAnimal();
+        Stage addStage = new Stage();
+        addAnimal.start(addStage);
+    }
 }

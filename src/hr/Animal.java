@@ -185,6 +185,42 @@ public class Animal {
             }
         return listAnimal;
     }
+   /* public int insertRowEmployee(Connection conn, Animal animal){
+        
+        String sql ="INSERT INTO EMPLOYEES(FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,"+
+                    "JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        
+        PreparedStatement stmt;
+        Integer res = 0;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1,employee.getFirstName());
+            stmt.setString(2,employee.getLastName());
+            stmt.setString(3,employee.getEmail());
+            stmt.setString(4,employee.getPhoneNumber());
+            stmt.setDate(5,employee.getHireDate());
+            stmt.setString(6,employee.getJobId());
+            stmt.setFloat(7,employee.getSalary());
+            stmt.setFloat(8,employee.getCommisionPct());
+            stmt.setInt(9,employee.getManagerId());
+            stmt.setInt(10,employee.getDepartmentId());
+            
+            res = stmt.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Info");
+            alert.setContentText("Row has been added");
+            alert.showAndWait();
+            }
+         catch (SQLException exc) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with row insert");
+            alert.setContentText("Details: " + exc.getMessage());
+            alert.showAndWait();
+        }
+        
+        return res;
+    }}*/
 
 }
 
