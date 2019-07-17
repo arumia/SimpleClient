@@ -64,11 +64,11 @@ public class Animal {
         this.vaccination = vaccination;
     }
 
-    public Timestamp getLastcheckdate() {
+    public Date getLastcheckdate() {
         return lastcheckdate;
     }
 
-    public void setLastcheckdate(Timestamp lastcheckdate) {
+    public void setLastcheckdate(Date lastcheckdate) {
         this.lastcheckdate = lastcheckdate;
     }
 
@@ -93,7 +93,7 @@ public class Animal {
     private Integer zooId;
     private String foodType;
     private String vaccination;
-    private Timestamp lastcheckdate;
+    private Date lastcheckdate;
     private String character;
     private String description;     
     
@@ -118,7 +118,7 @@ public class Animal {
                 animal.zooId = rs.getInt(4);
                 animal.foodType = rs.getString(5);
                 animal.vaccination = rs.getString(6);
-		animal.lastcheckdate = rs.getTimestamp(7);
+		animal.lastcheckdate = rs.getDate(7);
                 animal.character = rs.getString(8);
                 animal.description = rs.getString(9);
                 
@@ -175,7 +175,7 @@ public class Animal {
                 animal.zooId = rs.getInt(4);
                 animal.foodType = rs.getString(5);
                 animal.vaccination = rs.getString(6);
-		animal.lastcheckdate = rs.getTimestamp(7);
+		animal.lastcheckdate = rs.getDate(7);
                 animal.character = rs.getString(8);
                 animal.description = rs.getString(9);
                 
@@ -185,26 +185,24 @@ public class Animal {
             }
         return listAnimal;
     }
-   /* public int insertRowEmployee(Connection conn, Animal animal){
+    public int insertRowAnimal(Connection conn, Animal animal){
         
-        String sql ="INSERT INTO EMPLOYEES(FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,"+
-                    "JOB_ID,SALARY,COMMISSION_PCT,MANAGER_ID,DEPARTMENT_ID) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql ="INSERT INTO ANIMAL(ANIMAL_ID,NAME,ADDRESS,ZOO_ID,FOOD_TYPE,VACCINATION,LAST_CHECKU_DATE,"
+                + "CHARACTERISTIC,DESCRIPTION) VALUES(SEQ_ID.NEXTVAL,?,?,1,?,?,?,?,?)";
         
         PreparedStatement stmt;
         Integer res = 0;
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1,employee.getFirstName());
-            stmt.setString(2,employee.getLastName());
-            stmt.setString(3,employee.getEmail());
-            stmt.setString(4,employee.getPhoneNumber());
-            stmt.setDate(5,employee.getHireDate());
-            stmt.setString(6,employee.getJobId());
-            stmt.setFloat(7,employee.getSalary());
-            stmt.setFloat(8,employee.getCommisionPct());
-            stmt.setInt(9,employee.getManagerId());
-            stmt.setInt(10,employee.getDepartmentId());
+            stmt.setString(1,animal.getName());
+            stmt.setString(2,animal.getAddress());
+            stmt.setString(3,animal.getFoodType());
+            stmt.setString(4,animal.getVaccination());
+            stmt.setDate(5,animal.getLastcheckdate());
+            stmt.setString(6,animal.getCharacter());
+            stmt.setString(7,animal.getDescription());
+
             
             res = stmt.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -220,7 +218,60 @@ public class Animal {
         }
         
         return res;
-    }}*/
+    }
+    public int removeAnimal(Connection conn, Integer animalId) {
 
+        String sql = "DELETE FROM ANIMAL"
+                + " WHERE ANIMAL_ID = ? ";
+
+        PreparedStatement stmt;
+        Integer res = 0;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, animalId);
+
+            res = stmt.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Info");
+            alert.setContentText("Row has been removed");
+            alert.showAndWait();
+        } catch (SQLException exc) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with row delete");
+            alert.setContentText("Details: " + exc.getMessage());
+            alert.showAndWait();
+        }
+
+        return res;
+    }
+   public int updateRowAnimal(Connection conn, Animal animal){
+        
+        String sql ="UPDATE ANIMAL SET CHARACTERISTIC = ?, DESCRIPTION = ? WHERE ANIMAL_ID = ?";
+        
+        PreparedStatement stmt;
+        Integer res = 0;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1,animal.getCharacter());
+            stmt.setString(2,animal.getDescription());
+            stmt.setInt(3,animal.getAnimalId());
+            
+            res = stmt.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Info");
+            alert.setContentText("Row has been updated");
+            alert.showAndWait();
+            }
+         catch (SQLException exc) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem with row update");
+            alert.setContentText("Details: " + exc.getMessage());
+            alert.showAndWait();
+        }
+        
+        return res;
+    }
 }
 

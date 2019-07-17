@@ -8,13 +8,16 @@ package hr;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -102,5 +105,55 @@ public class FXMLDocumentController implements Initializable {
         AddAnimal addAnimal = new AddAnimal();
         Stage addStage = new Stage();
         addAnimal.start(addStage);
+    }
+
+    @FXML
+    public void deleteAnimalOnAction(ActionEvent action){
+         Integer rowIndex=animalTable.getSelectionModel().getSelectedIndex();
+         
+         if(rowIndex<0){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setTitle("Error");
+             alert.setContentText("No record is chosen...");
+             alert.showAndWait();
+             return;
+         }
+         
+         Integer animalId = animalTable.getSelectionModel().getSelectedItem().getAnimalId();
+         conn = DBConnection.getConnection();
+         
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Confirmation");
+         alert.setContentText("Do you really want delete the record");
+         Optional<ButtonType> result = alert.showAndWait();
+         
+         if(result.get() == ButtonType.OK){
+             Integer res = new Animal().removeAnimal(conn, animalId);
+             if(res>0){
+                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                 alert1.setTitle("Confirmation");
+                 alert1.setContentText("The record has been removed...");
+                 alert1.showAndWait();
+             }
+         } 
+    }
+    
+    public void updateAnimalButtonOnAction(ActionEvent action) throws Exception{
+        Integer rowIndex=animalTable.getSelectionModel().getSelectedIndex();
+         
+         if(rowIndex<0){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setTitle("Error");
+             alert.setContentText("No record is chosen...");
+             alert.showAndWait();
+             return;
+         }
+         
+        Integer animalId = animalTable.getSelectionModel().getSelectedItem().getAnimalId();
+         
+        UpdateAnimal updateAnimal = new UpdateAnimal();
+        UpdateAnimalController.animalId = animalId;
+        Stage updateStage = new Stage();
+        updateAnimal.start(updateStage);
     }
 }

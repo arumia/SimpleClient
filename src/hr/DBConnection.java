@@ -17,10 +17,10 @@ String DB_USER = "zoo";
  try {
 
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);            
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+/*            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("You are connected to database...");
             alert.show();
-        } catch (SQLException exc) {
+*/        } catch (SQLException exc) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error to database connection");
             alert.setContentText("Details: "+ exc.getMessage());
