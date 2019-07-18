@@ -116,11 +116,12 @@ public class AddAnimalController implements Initializable {
             else{
               animal.setVaccination(addVactin.getText().trim());
             }
-            if(Date.valueOf(addDate.getValue())==null){
-              Alert alert = new Alert(Alert.AlertType.ERROR);
+            if((addDate.getValue())==null){
+ /*             Alert alert = new Alert(Alert.AlertType.ERROR);
               alert.setContentText("The field Date can't be empty");
-             alert.showAndWait(); 
-             return null;
+             alert.showAndWait(); */
+             animal.setLastcheckdate(null);
+             //return null;
             }
             else{
                 animal.setLastcheckdate(Date.valueOf(addDate.getValue()));

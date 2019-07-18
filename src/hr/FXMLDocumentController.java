@@ -105,6 +105,7 @@ public class FXMLDocumentController implements Initializable {
         AddAnimal addAnimal = new AddAnimal();
         Stage addStage = new Stage();
         addAnimal.start(addStage);
+        
     }
 
     @FXML
@@ -136,6 +137,8 @@ public class FXMLDocumentController implements Initializable {
                  alert1.showAndWait();
              }
          } 
+        animalList = new Animal().getAll(conn);
+        setAniTable(animalList);
     }
     
     public void updateAnimalButtonOnAction(ActionEvent action) throws Exception{
