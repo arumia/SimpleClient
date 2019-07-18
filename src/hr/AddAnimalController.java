@@ -107,14 +107,22 @@ public class AddAnimalController implements Initializable {
             else{
              animal.setFoodType(addFood.getText().trim());
             }
-            if(addVactin.getText().trim().length()<1){
+            if(addVactin.getText().trim().length() != 1){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("The field Food can't be empty");
+            alert.setContentText("The field Vaccination can only one character");
             alert.showAndWait(); 
             return null;
             }
+            else if (addVactin.getText().trim().equals("o") ||addVactin.getText().trim().equals("x") || addVactin.getText().trim().equals("O") || addVactin.getText().trim().equals("X")){
+                if(addVactin.getText().trim().equals("o") ||addVactin.getText().trim().equals("x"))
+                 animal.setVaccination(addVactin.getText().trim().toUpperCase());
+                animal.setVaccination(addVactin.getText().trim());
+            }
             else{
-              animal.setVaccination(addVactin.getText().trim());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("The field Vaccination only O or X");
+                alert.showAndWait(); 
+                return null;
             }
             if((addDate.getValue())==null){
  /*             Alert alert = new Alert(Alert.AlertType.ERROR);
